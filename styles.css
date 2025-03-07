@@ -1,0 +1,107 @@
+body{
+  margin: 0;
+ display:block;
+ justify-content: center; /* Centraliza horizontalmente */
+ align-items: center; /* Centraliza verticalmente */
+ height: 100vh; /* Altura total da viewport */
+background-color: #eedfba; /* Cor de fundo da página */
+background-image: url('/img/ganesha.png'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover; /* Faz com que a imagem cubra toda a tela */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    background-position: center; /* Centraliza a imagem */
+    background-attachment: fixed; /* Fixa a imagem de fundo */ 
+
+        
+}
+#titulo_01{
+  font-family: "Dancing Script", cursive;
+  font-size:50px;  
+  text-align: center;  
+  width: 100%;
+}
+
+#primeiro_texto{
+  display:block;
+  text-align:justify;
+  width: 90%;
+}
+
+#texto_03{
+  font-size: 16px;
+  display:block;
+  text-align:justify;
+  width: 80%;
+}
+
+#Terapeuta {
+  font-size: 40px;
+  font-family: "Dancing Script", cursive;
+  
+}
+
+#contatos{
+  width: 80px;
+}
+
+#contato{
+  font-size: 150%;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%; /* Ocupa 100% da largura disponível */
+  background-color: #f2f2f200; /* Cor de fundo da tabela */
+}
+th, td {
+  border: 0px solid #00000000; /* Bordas das células */
+ text-align: center;
+ padding: 8px;
+}
+
+
+
+footer {
+    background: #393939;
+    color: #4a4a4a92;
+    padding: 20px 0;
+    text-align: center;
+    
+  }
+  
+  .footer-content {
+    margin-bottom: 20px;
+  }
+  
+  .footer-content h3 {
+    color: #19191957;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-content p {
+    font-size: 10px;
+    color: #33333380;
+    line-height: 1.5;
+  }
+  
+  .socials {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .socials li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  .socials li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  
+  .footer-bottom {
+    font-size: 12px;
+  }
+  
