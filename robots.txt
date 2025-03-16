@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://massagem-delta.vercel.app/sitemap.xml
