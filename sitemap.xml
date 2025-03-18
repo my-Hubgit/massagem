@@ -4,5 +4,9 @@
     <loc>https://massagem-delta.vercel.app/</loc>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
+
+    <loc>https://coruscating-meerkat-f45cb6.netlify.app/</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
   </url>
 </urlset>
