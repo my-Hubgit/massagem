@@ -7,8 +7,17 @@
   </url>
 
   <url>
-    <loc>https://massagem-delta.vercel.app/pagina-exemplo/</loc>
+    <loc>https://massagem-delta.vercel.app/sitemap.xml</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
+
+
+    <url>
+    <loc>https://massagem-delta.vercel.app/robots.txt</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  
 </urlset>
