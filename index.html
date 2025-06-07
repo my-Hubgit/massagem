@@ -36,6 +36,12 @@
             background: var(--bg-gradient);
             line-height: 1.6;
             overflow-x: hidden; /* Evita scroll horizontal em alguns casos */
+            
+            /* PROIBE SELEÇÃO DE TEXTO */
+            -webkit-user-select: none;  /* Para Safari */
+            -moz-user-select: none;     /* Para Firefox */
+            -ms-user-select: none;      /* Para IE/Edge */
+            user-select: none;          /* Padrão */
         }
 
         header {
@@ -149,7 +155,7 @@
         }
 
         .image-gallery img {
-            width: calc(33.33% - 20px); /* Ajuste para 3 imagens por linha em telas maiores */
+            width: calc(23.33% - 20px); /* Ajuste para 3 imagens por linha em telas maiores */
             max-width: 320px;
             height: 220px; /* Altura fixa para uniformidade */
             object-fit: cover;
@@ -174,7 +180,7 @@
         }
 
         h2 {
-            font-size: 2.8em;
+            font-size: 2.2em;
             padding-bottom: 15px;
             border-bottom: 3px solid var(--secondary-color);
             position: relative;
@@ -190,10 +196,7 @@
             color: var(--accent-color);
         }
 
-        h3 {
-            font-size: 2.2em;
-            color: var(--primary-color);
-        }
+        /* Removido o h3 genérico, agora estilizado por .depoimento-card h3 */
 
         p {
             margin-bottom: 18px;
@@ -330,6 +333,57 @@
             100% { transform: scale(1); }
         }
 
+        /* --- Estilos para Depoimentos em Cartões --- */
+        .depoimentos-grid {
+            display: grid; /* Usa CSS Grid para o layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colunas responsivas */
+            gap: 30px; /* Espaçamento entre os cartões */
+            margin-top: 40px;
+            padding: 0 20px; /* Adiciona um pouco de padding nas laterais em telas menores */
+        }
+
+        .depoimento-card {
+            background-color: var(--bg-light); /* Fundo rosa pálido */
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra mais destacada */
+            border: 2px solid var(--border-color); /* Borda com cor quente */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* Para centralizar o conteúdo dentro do card */
+            flex-direction: column;
+            justify-content: space-between; /* Empurra o nome para baixo, se houver espaço */
+        }
+
+        .depoimento-card:hover {
+            transform: translateY(-8px); /* Efeito de elevação ao passar o mouse */
+            box-shadow: 0 12px 30px rgba(255, 0, 255, 0.455);
+        }
+
+        .depoimento-card h3 {
+            font-size: 1.4em; /* Ajusta o tamanho do título do depoimento */
+            margin-top: 0; /* Remove margem superior padrão do h3 */
+            margin-bottom: 15px;
+            color: var(--primary-color); /* Cor principal para o título do depoimento */
+            text-align: center; /* Centraliza o título */
+        }
+
+        .depoimento-card p {
+            font-size: 1em; /* Ajusta o tamanho do texto do depoimento */
+            line-height: 1.7;
+            text-align: justify; /* Justifica o texto para melhor leitura */
+            color: var(--text-dark);
+            margin-bottom: 10px; /* Espaço entre parágrafos */
+        }
+
+        /* Ajuste para o nome dentro do depoimento-card */
+        .depoimento-card p strong {
+            color: var(--primary-color); /* Mantém a cor para o nome */
+            display: block; /* Garante que o nome fique em uma nova linha */
+            margin-top: 15px; /* Espaço entre o texto e o nome */
+            text-align: right; /* Alinha o nome à direita */
+            font-size: 0.95em; /* Ajusta o tamanho do nome */
+        }
+
         /* Responsividade */
         @media (max-width: 1024px) {
             header h1 {
@@ -349,6 +403,9 @@
             }
             .cta a {
                 font-size: 1.6em;
+            }
+            .depoimentos-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajuste para mais colunas se houver espaço */
             }
         }
 
@@ -383,9 +440,7 @@
             h2 {
                 font-size: 2em;
             }
-            h3 {
-                font-size: 1.8em;
-            }
+            /* h3 já está estilizado no .depoimento-card h3 e não precisa ser sobrescrito aqui */
             .cta h3 {
                 font-size: 2em;
             }
@@ -397,13 +452,36 @@
                 position: relative; /* Remove sticky em telas pequenas */
                 top: unset;
             }
+            .depoimentos-grid {
+                grid-template-columns: 1fr; /* Uma coluna em telas menores */
+                padding: 0 15px; /* Ajusta o padding */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .depoimento-card {
+                padding: 20px; /* Reduz o padding em telas muito pequenas */
+            }
+            .depoimento-card h3 {
+                font-size: 1.2em; /* Reduz o tamanho do título */
+            }
+            .depoimento-card p {
+                font-size: 0.95em; /* Reduz o tamanho do texto */
+            }
         }
     </style>
 </head>
 <body>
+    <script>
+        // Bloqueia o clique com o botão direito em todo o documento
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // Impede o comportamento padrão (abrir o menu de contexto)
+        });
+    </script>
     <header>
-        <h1>Massagem Tântrica e Erótica em Florianópolis</h1>
-        <p>Desvende os segredos do seu corpo, explore o **êxtase** e viva a **liberdade do seu prazer**.</p>
+        <img src="img/Lor ganesha.png" width="10%" style="margin-top: -1%; opacity: 50%;">
+        <h1 style="margin-top: -1.8%;">Massagem Tântrica em Florianópolis</h1>
+        <p><center>Desvende os segredos do seu corpo, explore o **êxtase** e viva a **liberdade do seu prazer**.</center></p>
     </header>
 
     <nav>
@@ -411,117 +489,112 @@
         <a href="#erotica">Erótica: Prazer Sensorial</a>
         <a href="#sessao">Sua Experiência</a>
         <a href="#depoimentos">Quem Já Sentiu</a>
-        
         <a href="#contato">Contato Íntimo</a>
     </nav>
 
     <div class="container">
         <div class="content">
             <div class="image-gallery">
-                <img src="/img/01.png" alt="Mulher desfrutando massagem tântrica, despertando a sensualidade" title="Massagem Tântrica: Toque e Sensualidade">
+                <img src="/img/1.jpg" alt="Mulher desfrutando massagem tântrica, despertando a sensualidade" title="Massagem Tântrica: Toque e Sensualidade">
                 <img src="img/tan_energia.jpg" alt="Casal em momento íntimo de massagem erótica, prazer e conexão" title="Massagem Erótica: Prazer Compartilhado, energia casal">
                 <img src="img/tan_energia1.jpg" alt="Casal em momento íntimo de massagem erótica, prazer e conexão" title="Massagem Erótica: Prazer Compartilhado">
-                
-                <img src="img/tan_costas.jpg" alt="Massagem tântrica nas costas, liberando tensões e despertando energia" title="Energia Sexual e Bem-Estar">
-                <img src="img/tan_costas1.jpg" alt="Terapeuta com toque suave e consciente na massagem tântrica nas costas" title="Cura e Conexão Profunda, massagem nas costas">
-
-                <img src="img/tan_mul.jpg" alt="Mulher em êxtase durante massagem tântrica, libertando o prazer" title="Despertar do Prazer Feminino">
-                <img src="img/tan_mu2.jpg" alt="Massagem Tântrica Yoni: o toque que eleva o orgasmo feminino" title="Orgamos Múltiplos e Fluxo Energético">
-                <img src="img/tan_hom.jpg" alt="Massagem Tântrica Lingam: Desvendando o prazer masculino e a vitalidade" title="Prazer Masculino e Expansão da Consciência">
-                <img src="img/gay1.jpg" alt="massagem masculina lingam" title="Massagem Erótica: massagem masculina">
-                <img src="img/gay2.jpg" alt="Parazer e conexão Homem" title="Massagem Erótica: Prazer Masculino">
-                
-                
-                <img src="img/tan_energia.jpg" alt="Corpo vibrante em massagem tântrica, fluindo energia vital" title="Fluxo de Energia Sexual">
-                <img src="img/tan_energia1.jpg" alt="Olhares de cumplicidade na sessão de massagem tântrica" title="Confiança e Entrega Total">
-                <img src="img/tan_org.webp" alt="Sensação de orgasmo e prazer expandido em massagem tântrica" title="Orgamos que Transformam a mulher">
-                <img src="img/2560x1440.6.webp" alt="Massagem Erótica com foco na sensualidade e no corpo" title="Sensualidade e Prazer Corporal">
+                <img src="img/energia.png" alt="Chacras, energia do corpo" title="Energia que fui pelo corpo - chacras">
             </div>
 
             <section id="tantrica">
                 <h2>💖 Massagem Tântrica: O Despertar do Êxtase e a Cura Profunda</h2>
-                <p>Você sente que há uma **energia adormecida** dentro de você? Talvez um **desejo reprimido**, uma **sensibilidade que foi silenciada**, ou até mesmo **bloqueios** que te impedem de sentir o **prazer em sua totalidade**. Muitas mulheres e homens carregam, por vezes, cicatrizes invisíveis de **traumas passados**, **experiências dolorosas (incluindo abusos)**, ou lutam contra **disfunções sexuais** como a **vaginismo, anorgasmia, ejaculação precoce ou baixa libido**. Isso pode gerar um vazio, uma desconexão com o próprio corpo e uma insatisfação com a vida íntima.</p>
+                <p>Sente uma **energia adormecida**? Desejo reprimido, sensibilidade silenciada ou **bloqueios** te impedem de sentir o **prazer total**? Muitos carregam cicatrizes de **traumas (inclusive abusos)** ou disfunções sexuais como **vaginismo, anorgasmia, ejaculação precoce, baixa libido**. Isso gera desconexão e insatisfação íntima.</p>
 
-                <p>Eu entendo a profundidade de suas questões. E quero que saiba: **existe um caminho para a sua libertação e para a plenitude do seu prazer.** A **Massagem Tântrica** não é apenas um toque, é uma **jornada de redenção e êxtase**. É uma técnica milenar que, através de toques **extremamente conscientes, suaves e profundos**, atua diretamente no **despertar da sua energia vital (Kundalini)**. Essa energia, uma vez liberada, promove uma **poderosa cura emocional**, desfazendo nós, traumas e medos que aprisionam sua sexualidade e sua alegria de viver.</p>
+                <p>Eu entendo suas questões. **Existe um caminho para sua libertação e prazer.** A **Massagem Tântrica** é uma **jornada de redenção e êxtase**. Com toques **conscientes, suaves e profundos**, ela desperta sua **energia vital (Kundalini)**. Essa energia cura **traumas e medos**, libertando sua sexualidade e alegria de viver.</p>
 
-                <p>Permita-se sentir. Permita-se ser. A massagem tântrica é o convite para você **reconectar-se com a sua essência mais pura**, expandir sua percepção de prazer e alcançar **orgasmos que transbordam o corpo**, tocando a alma. É um processo de **liberação e autoconhecimento** que reflete em todas as áreas da sua vida, trazendo mais **confiança, autoestima e vitalidade**.</p>
+                <p>Permita-se sentir. Reconecte-se à sua **essência pura**, expanda o prazer e alcance **orgasmos que transcendem o corpo**, tocando a alma. Um processo de **liberação e autoconhecimento** que trará mais **confiança, autoestima e vitalidade** à sua vida.</p>
 
                 <h3>Benefícios da Massagem Tântrica que Transformarão Sua Vida:</h3>
                 <ul>
-                    <li>**Reconexão Íntima:** Desperta a sensibilidade e o prazer em todo o corpo, reativando zonas erógenas e levando a sensações intensas e múltiplas.</li>
-                    <li>**Cura e Libertação:** Auxilia na dissolução de traumas e bloqueios emocionais, inclusive de experiências passadas (como abusos), promovendo um processo de profunda cura.</li>
-                    <li>**Orgasmos Expandidos:** Possibilita a vivência de orgasmos mais intensos, prolongados e energéticos, transcendendo o orgasmo genital.</li>
-                    <li>**Aumento da Libido e Vitalidade:** A energia sexual é reativada e distribuída, aumentando a disposição, o bem-estar e o desejo.</li>
-                    <li>**Autoestima e Empoderamento:** Reconecte-se com seu corpo de forma positiva, fortalecendo sua confiança e sua capacidade de amar e ser amado(a).</li>
-                    <li>**Harmonia Corporal e Mental:** Alivia o estresse, a ansiedade e as tensões, proporcionando um estado de profundo relaxamento e clareza.</li>
-                    <li>**Superação de Disfunções:** Suporte no tratamento de vaginismo, anorgasmia, ejaculação precoce e outros desafios sexuais, com abordagem profissional e respeitosa.</li>
+                    <li>**Reconexão Íntima:** Desperta a sensibilidade e o prazer no corpo, reativando zonas erógenas para sensações múltiplas.</li>
+                    <li>**Cura e Libertação:** Dissolve traumas e bloqueios emocionais, promovendo cura profunda.</li>
+                    <li>**Orgasmos Expandidos:** Vivencie orgasmos intensos, prolongados e energéticos, além do físico.</li>
+                    <li>**Aumento da Libido e Vitalidade:** Reativa e distribui a energia sexual, elevando disposição e desejo.</li>
+                    <li>**Autoestima e Empoderamento:** Reconecte-se ao corpo, fortalecendo confiança e capacidade de amar.</li>
+                    <li>**Harmonia Corporal e Mental:** Alivia estresse e tensões, proporcionando relaxamento e clareza.</li>
+                    <li>**Superação de Disfunções:** Suporte profissional para vaginismo, anorgasmia, ejaculação precoce, etc.</li>
                 </ul>
-                <p>Em Florianópolis, eu, Devi Karan, ofereço um espaço de **total sigilo, profissionalismo e acolhimento** para que sua jornada seja segura e verdadeiramente transformadora.</p>
+                <p>Em Florianópolis, Devi Karan oferece um espaço de **sigilo, profissionalismo e acolhimento** para sua jornada transformadora.</p>
             </section>
 
             <section id="erotica">
                 <h2> sensualidade pura: Massagem Erótica para Desvendar Seu Prazer</h2>
-                <p>Você busca uma experiência de **prazer intenso, puro deleite e total entrega aos seus sentidos?** A **Massagem Erótica** é a arte de tocar o corpo com foco total na **sensualidade, excitação e gozo**. É uma celebração do prazer físico, desenhada para explorar as profundezas dos seus desejos em um ambiente seguro e profissional.</p>
+                <p>Busca **prazer intenso, puro deleite e total entrega aos sentidos?** A **Massagem Erótica** é a arte de tocar o corpo com foco na **sensualidade, excitação e gozo**. Celebre o prazer físico, explorando seus desejos em um ambiente seguro e profissional.</p>
 
-                <p>Aqui, o foco é você e a sua capacidade de sentir. Através de toques precisos, ritmados e envolventes sobre as **zonas erógenas**, a massagem erótica te convida a um estado de **relaxamento profundo e excitação crescente**. É uma oportunidade para liberar tensões sexuais, desinibindo seu corpo e sua mente para uma experiência de **prazer sem limites ou julgamentos**.</p>
+                <p>O foco é você e sua capacidade de sentir. Toques precisos, ritmados e envolventes nas **zonas erógenas** te convidam a um estado de **relaxamento profundo e excitação crescente**. Uma chance de liberar tensões sexuais, desinibindo seu corpo para um **prazer sem limites ou julgamentos**.</p>
 
                 <h3>Experimente o Êxtase com a Massagem Erótica:</h3>
                 <ul>
-                    <li>**Prazer Físico Maximizado:** Toques direcionados para aguçar cada centímetro da sua pele, levando a sensações de profundo deleite.</li>
-                    <li>**Liberação de Tensão Sexual:** Alivia o estresse e a ansiedade, permitindo que você se entregue completamente ao momento.</li>
-                    <li>**Despertar da Sensualidade:** Conecte-se com sua libido e seu poder de sedução, redescobrindo sua sexualidade.</li>
-                    <li>**Experiência Personalizada e Segura:** Cada sessão é conduzida com absoluto respeito aos seus limites e desejos, garantindo sua segurança e conforto.</li>
-                    <li>**Relaxamento e Bem-Estar:** Além do prazer, proporciona uma sensação de leveza e tranquilidade após a liberação de energias.</li>
+                    <li>**Prazer Físico Maximizado:** Toques que aguçam cada centímetro da pele, levando a sensações de profundo deleite.</li>
+                    <li>**Liberação de Tensão Sexual:** Alivia estresse e ansiedade, permitindo entrega total.</li>
+                    <li>**Despertar da Sensualidade:** Reconecte-se à libido e ao poder de sedução, redescobrindo sua sexualidade.</li>
+                    <li>**Experiência Personalizada e Segura:** Sessão com respeito total a seus limites e desejos.</li>
+                    <li>**Relaxamento e Bem-Estar:** Além do prazer, proporciona leveza e tranquilidade.</li>
                 </ul>
-                <p>Seja para explorar fantasias, liberar o estresse do dia a dia ou simplesmente desfrutar de um momento de pura sensualidade e gozo, a massagem erótica é uma escolha fascinante. Permita-se essa experiência única em **Florianópolis**, onde sua discrição e prazer são a nossa prioridade.</p>
+                <p>Para explorar fantasias, aliviar estresse ou desfrutar de pura sensualidade e gozo, a massagem erótica é fascinante. Permita-se essa experiência única em **Florianópolis**, com discrição e prazer como prioridade.</p>
             </section>
 
             <section id="sessao">
                 <h2>Sua Experiência Inesquecível: Como Preparamos a Sua Sessão</h2>
-                <p>Independente da sua escolha — a cura profunda da massagem tântrica ou o prazer sensorial da massagem erótica — sua experiência será pautada por **respeito, profissionalismo e um ambiente de total acolhimento**. Cada sessão é um ritual, pensado para você se sentir à vontade e seguro(a).</p>
+                <p>Na tântrica ou erótica, sua experiência será de **respeito, profissionalismo e acolhimento**. Cada sessão é um ritual para você se sentir à vontade e seguro(a).</p>
 
                 <h3>1. Acolhimento e Conexão Inicial:</h3>
                 <ul>
-                    <li>Você será recebido(a) em um ambiente cuidadosamente preparado: com **iluminação suave, aromas convidativos e música relaxante**, tudo para estimular seus sentidos e acalmar sua mente.</li>
-                    <li>Iniciaremos com uma **conversa confidencial e sem julgamentos**. Este é o seu espaço para compartilhar suas expectativas, dúvidas e, principalmente, estabelecer seus limites. Sua **segurança e conforto** são a nossa prioridade absoluta.</li>
+                    <li>Ambiente preparado: **iluminação suave, aromas convidativos, música relaxante** para estimular os sentidos.</li>
+                    <li>**Conversa confidencial e sem julgamentos**. Seu espaço para expectativas, dúvidas e limites. Sua **segurança e conforto** são nossa prioridade.</li>
                 </ul>
 
                 <h3>2. O Toque Que Transforma e Excita:</h3>
                 <ul>
-                    <li>Para a **Massagem Tântrica**, o toque é um portal para a **cura e o autoconhecimento**. Movimentos **suaves, conscientes e rítmicos** percorrem o corpo, ativando pontos de energia e liberando tensões profundas, permitindo que a energia vital flua e te leve ao **êxtase energético**.</li>
-                    <li>Na **Massagem Erótica**, o toque é uma celebração da **sensualidade e do prazer**. Com técnicas focadas em despertar a excitação e intensificar as sensações nas zonas erógenas, proporcionamos um **gozo físico** que liberta e deleita.</li>
-                    <li>Utilizamos **óleos naturais** de alta qualidade, que não apenas nutrem a pele, mas também intensificam a experiência sensorial.</li>
+                    <li>**Massagem Tântrica:** Toque é portal para **cura e autoconhecimento**. Movimentos **suaves, conscientes e rítmicos** ativam energia, liberando tensões profundas para o **êxtase energético**.</li>
+                    <li>**Massagem Erótica:** Toque é celebração da **sensualidade e prazer**. Técnicas que despertam excitação e intensificam sensações, proporcionando um **gozo físico** libertador.</li>
+                    <li>Utilizamos **óleos naturais** de alta qualidade, nutrindo a pele e intensificando a experiência.</li>
                 </ul>
 
                 <h3>3. O Clímax da Entrega e o Prazer Expandido:</h3>
                 <ul>
-                    <li>Seja através da ativação da energia Kundalini na tântrica, que pode culminar em **orgasmos múltiplos e que transcendem o físico**, ou da culminação do prazer sensorial na erótica, nosso objetivo é que você **sinta seu corpo de uma forma jamais experimentada**.</li>
-                    <li>A **respiração consciente** será sua aliada, ampliando as sensações e permitindo uma entrega total ao momento presente.</li>
+                    <li>Seja **orgasmos múltiplos e transcendentais** na tântrica ou o ápice do prazer sensorial na erótica, nosso objetivo é que você **sinta seu corpo de forma inédita**.</li>
+                    <li>A **respiração consciente** ampliará as sensações, permitindo entrega total.</li>
                 </ul>
 
                 <h3>4. Finalização e Integração:</h3>
                 <ul>
-                    <li>Após a massagem, você terá um tempo para desfrutar da plenitude das sensações, integrando a experiência em seu corpo e mente.</li>
-                    <li>Estarei disponível para conversar sobre suas percepções, em um ambiente de total confidencialidade.</li>
+                    <li>Após a massagem, tempo para desfrutar e integrar a experiência.</li>
+                    <li>Disponível para conversar sobre suas percepções, em confidencialidade.</li>
                 </ul>
-                <p>Minha missão é que você saia dessa experiência **renovado(a), mais conectado(a) ao seu prazer e com uma sensação de liberdade e empoderamento**. Permita-se essa jornada extraordinária em Florianópolis.</p>
+                <p>Minha missão é que você saia **renovado(a), mais conectado(a) ao seu prazer, livre e empoderado(a)**. Permita-se essa jornada extraordinária em Florianópolis.</p>
             </section>
 
             <section id="depoimentos">
                 <h2>✨ Quem Já Sentiu: Histórias de Êxtase, Cura e Redescoberta</h2>
-                <p>As experiências são tão únicas quanto cada pessoa. Leia o que alguns de nossos clientes compartilharam sobre suas jornadas de prazer e transformação:</p>
+                <p>Experiências únicas. Veja o que nossos clientes compartilham sobre suas jornadas de prazer e transformação:</p>
 
-                <h3>"Uma Libertação Emocional e um Prazer Inesperado!"</h3>
-                <p>"Eu carregava um peso enorme de traumas passados, que me impediam de viver minha sexualidade. A massagem tântrica com Devi não foi só uma massagem, foi um portal para a **cura**. Com muita paciência e um toque de alma, ele me ajudou a liberar o que estava preso e a redescobrir um **prazer profundo e orgasmos** que eu nem sabia que existiam. Minha vida mudou!" - **Ana P., 38 anos**</p>
+                <div class="depoimentos-grid">
+                    <div class="depoimento-card">
+                        <h3>"Uma Libertação Emocional e um Prazer Inesperado!"</h3>
+                        <p>"Carregava traumas que impediam minha sexualidade. Durante as 8 seções, a tântrica com Devi tem sido um portal para a **cura**. Com paciência, ele me ajudou a liberar o preso e redescobrir um **prazer profundo e orgasmos** que eu não sabia existir. Minha vida mudou!" - **Ana P., 38 anos**</p>
+                    </div>
 
-                <h3>"O Gozo em Sua Forma Mais Pura"</h3>
-                <p>"A massagem erótica foi uma experiência de **prazer puro e intenso**. O profissionalismo e a atenção aos detalhes me fizeram sentir totalmente à vontade para explorar minha sensualidade. É um momento de **pura entrega e deleite**, que me deixou renovado e com a energia lá em cima. Recomendo para quem busca o máximo do prazer!" - **Lucas M., 45 anos**</p>
+                    <div class="depoimento-card">
+                        <h3>"O Gozo em Sua Forma Mais Pura"</h3>
+                        <p>"A massagem erótica foi **prazer puro e intenso**. O profissionalismo me fez sentir à vontade para explorar. Um momento de **pura entrega e deleite**, que me deixou renovado e com a energia lá em cima. Recomendo para quem busca o máximo do prazer!" - **Luanna M., 21 anos**</p>
+                    </div>
 
-                <h3>"Reconectada com Minha Essência Sexual"</h3>
-                <p>"Após o parto, senti meu corpo diferente, e minha libido diminuiu muito. A massagem tântrica me ajudou a **reassociar prazer e corpo**, a me sentir bonita e desejável novamente. Os orgasmos energéticos foram uma revelação. É um carinho para a alma e para o corpo!" - **Fernanda C., 31 anos**</p>
+                    <div class="depoimento-card">
+                        <h3>"Reconectada com Minha Essência Sexual"</h3>
+                        <p>"Após o parto, libido baixa. A tântrica me ajudou a **reassociar prazer e corpo**, me sentir bonita e desejável. Os orgasmos energéticos foram uma revelação. Um carinho para a alma e o corpo!" - **Fernanda C., 31 anos**</p>
+                    </div>
 
-                <h3>"O Fim da Ansiedade e o Início do Prazer Verdadeiro"</h3>
-                <p>"Lutava contra a ejaculação precoce e a ansiedade de desempenho. A massagem tântrica me ensinou a sentir, a prolongar o prazer e a me conectar mais profundamente com meu corpo. Hoje, vivo uma sexualidade muito mais **consciente e prazerosa**. Agradeço demais ao Devi!" - **Gustavo L., 50 anos**</p>
+                    <div class="depoimento-card">
+                        <h3>"O Fim da Ansiedade e o Início do Prazer Verdadeiro"</h3>
+                        <p>"Lutava contra ejaculação precoce e ansiedade. A tântrica me ensinou a sentir, prolongar o prazer e conectar com meu corpo. Hoje, vivo uma sexualidade mais **consciente e prazerosa**. Agradeço demais ao Devi!" - **Gustavo L., 50 anos**</p>
+                    </div>
+                </div>
 
                 <p id="contato">Sua história de transformação e prazer pode começar hoje. Entre em contato para uma conversa confidencial e sem compromisso. Eu, Devi Karan, estou aqui para te guiar.</p>
             </section>
@@ -537,13 +610,13 @@
         </div>
 
         <div class="sidebar">
-            
-            <p style="text-align: center; margin-top: 40px; font-family: 'Cinzel Decorative', serif; font-size: 1.8em; color: var(--primary-color);">**Devi Karan**</p>
-            <p style="text-align: center; font-size: 1.1em; margin-top: 15px; font-weight: bold;">Seu Guia para o Prazer e a Cura Consciente</p>
+            <p style="text-align: center; margin-top: 10px; font-family: 'Cinzel Decorative', serif; font-size: 1.8em; color: var(--primary-color);">**Devi Karan**</p>
+            <p style="text-align: center; text-decoration:underline; font-size: 1.1em; margin-top: 1.5px; font-weight: bold;">Terapeuta orienta e Tântrico</p>
+            <p style="text-align: center; font-size: 1.1em; margin-top: 15px; font-weight: bold;">Seu Guia para a Cura Consciente</p>
             <div style="text-align: center; margin-top: 30px;">
-                 <img src="/img/png_6.png" alt="Contato WhatsApp Devi Karan" style="width: 120px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 0 8px rgba(0,0,0,0.2));">
-                 <p style="font-size: 1.3em; font-weight: bold; margin-top: 15px; color: var(--primary-color);">(48) 99950-0408</p>
-                 <p style="font-size: 0.9em; margin-top: 10px;">Atendimento em Florianópolis/SC</p>
+                <img src="/img/png_6.png" alt="Contato WhatsApp Devi Karan" style="width: 120px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 0 8px rgba(0,0,0,0.2));">
+                <p style="font-size: 1.3em; text-align: center; font-weight: bold; margin-top: 15px; color: var(--primary-color);">(48) 99950-0408</p>
+                <p style="font-size: 0.9em;text-align: center; margin-top: 10px;">Atendimento em Florianópolis/SC</p>
             </div>
         </div>
     </div>
@@ -559,7 +632,7 @@
             </ul>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Massagem Tântrica e Erótica em Florianópolis. Todos os direitos reservados. Terapeuta Devi Karan.</p>
+            <p>&copy; 2022 Massagem Tântrica e Erótica em Florianópolis. Todos os direitos reservados. Terapeuta Devi Karan.</p>
         </div>
     </footer>
 </body>
