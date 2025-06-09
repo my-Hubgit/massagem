@@ -643,7 +643,34 @@
             <p>Um espaço de **liberdade, respeito e transformação**, dedicado a você que busca o **êxtase e o bem-estar integral**.</p>
             <ul class="socials">
                 <li><a href="https://www.facebook.com/MassagemTantricaFpolis" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                <li><a href="https://wa.me/5548999500408" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                <li><a href="https://wa.me/5548999500408" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                
+                    <!-- Event snippet for Compra conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-1037109938/h4cpCM-W6NUaELKVxO4D',
+      'value': 1.0,
+      'currency': 'BRL',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+                
+                
+                
+                
+                
+                </li>
                 <li><a href="/sitemap.xml"><i class="fas fa-sitemap"></i> Mapa do Site</a></li>
             </ul>
         </div>
