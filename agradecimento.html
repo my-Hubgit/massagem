@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Sucesso! Sua Parceria Começa Agora! 🎉</title>
+    <meta name="description" content="Obrigado por se cadastrar! Sua parceria/investimento foi confirmada. Acesse as próximas informações em seu e-mail.">
+    <meta name="robots" content="noindex, follow"> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis de Cores Alegres e Vibrantes */
+        :root {
+            --primary-bg: #E8F5E9; /* Verde-água muito claro - base suave */
+            --secondary-bg: #BBDEFB; /* Azul bebê - toque leve */
+            --accent-blue: #2196F3; /* Azul vibrante - energia */
+            --accent-pink: #FF4081; /* Rosa choque - alegria */
+            --accent-yellow: #FFC107; /* Amarelo ensolarado - otimismo */
+            --accent-orange: #FF9800; /* Laranja vibrante - entusiasmo */
+            --text-dark: #333333;
+            --text-light: #555555;
+            --button-bg: var(--accent-pink);
+            --button-hover: #E03578;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            background-color: rgba(206, 237, 140, 0.707); /* Fundo branco semi-transparente */
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            z-index: 10; /* Garante que esteja acima das animações */
+            position: relative;
+            /* Garante que o conteúdo principal possa rolar se for muito grande */
+            max-height: 90vh; 
+            overflow-y: auto; 
+        }
+        
+        /* Estilo customizado para a barra de rolagem (WebKit browsers) */
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .container::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        .container::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 10px;
+        }
+        .container::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-pink);
+        }
+
+        .header-icon {
+            font-size: 4em;
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
+            animation: bounce 1s infinite alternate; /* Animação simples para o ícone */
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive; /* Fonte manuscrita e festiva */
+            font-size: 3.2em;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            color: var(--accent-pink);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--button-bg);
+            color: rgb(250, 247, 247);
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animação de Queda para Confetes e Objetos */
+        @keyframes fall {
+            0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        .falling-element-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Esconde elementos que saem do container */
+            pointer-events: none; /* Permite clicar no conteúdo por baixo */
+            z-index: 1; /* Garante que esteja atrás do conteúdo principal */
+        }
+
+        .confetti, .party-item {
+            position: absolute;
+            opacity: 0; /* Começa invisível, JS vai mudar a opacidade */
+            animation: fall 5s linear infinite; /* Animação de queda */
+        }
+
+        .confetti {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .party-item {
+            width: 25px; /* Tamanho base dos objetos comemorativos */
+            height: 25px;
+            background-color: transparent; /* Para que a imagem interna seja visível */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Garante que a imagem não vaze */
+        }
+
+        .party-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Garante que a imagem se ajuste ao tamanho */
+        }
+
+        /* Variações de animação para dar mais dinamismo */
+        .falling-element-container > *:nth-child(even) {
+            animation-duration: 7s;
+        }
+
+        .falling-element-container > *:nth-child(3n) {
+            animation-delay: 1s;
+        }
+
+        .falling-element-container > *:nth-child(5n) {
+            animation-duration: 6s;
+            animation-delay: 0.5s;
+        }
+
+        /* Animação para o ícone de balão */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                max-height: 85vh; /* Ajusta a altura máxima em telas menores */
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .cta-button {
+                font-size: 1.1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="falling-element-container"></div>
+
+    <div class="container">
+        <div class="header-icon">✨</div>
+        <h1>Parabéns e Muito Obrigado!</h1>
+        <h2>Sua decisão é o início de uma jornada extraordinária!</h2>
+        <p>
+            Que alegria imensa ter você conosco! Sua escolha em investir no nosso curso/parceria é a prova de que você está pronta(o) para <span class="highlight">transformar seu potencial em realidade.</span>
+        </p>
+        <p>
+            Este é o primeiro passo para um caminho cheio de <span class="highlight">aprendizado, crescimento e sucesso!</span> Prepare-se para desvendar novas habilidades e alcançar resultados que você nunca imaginou.
+        </p>
+        <p>
+            Em breve, todas as informações de acesso serão enviadas para o seu e-mail. Fique de olho na sua caixa de entrada!
+        </p>
+        <p>
+            Estamos incrivelmente felizes por ter você em nossa comunidade e mal podemos esperar para ver sua evolução. **Sua vitória é a nossa maior inspiração!**
+        </p>
+        <a href="index.html" class="cta-button">Retornar a página anterior</a> 
+    </div>
+
+    <script>
+        const fallingContainer = document.querySelector('.falling-element-container');
+        const confettiColors = ['#FF4081', '#2196F3', '#FFC107', '#FF9800', '#4CAF50']; // Cores dos confetes
+        
+        // **IMPORTANTE:** Configure os caminhos para suas imagens de objetos comemorativos aqui!
+        // Ex: 'img/chapeu-festa.png' se a imagem estiver na pasta 'img'
+        const partyItems = [
+            'img/chapeu-festa.png', // Exemplo: um chapeuzinho de festa
+            'img/estrela.png',     // Exemplo: uma estrela
+            'img/coracao.png',     // Exemplo: um coração
+            'img/presente.png'     // Exemplo: um presente
+            // Adicione mais caminhos para suas imagens de objetos comemorativos aqui
+        ];
+
+        const numberOfConfetti = 200; // Número de confetes (aumentado para mais impacto)
+        const numberOfPartyItems = 60; // Número de outros objetos (chapeuzinhos, estrelas, etc.)
+
+        function createFallingElement(type) {
+            const element = document.createElement('div');
+            element.classList.add(type);
+            element.style.left = Math.random() * 100 + 'vw'; // Posição horizontal aleatória
+            element.style.animationDuration = Math.random() * 4 + 3 + 's'; // Duração da animação (3-7s)
+            element.style.animationDelay = Math.random() * 2 + 's'; // Atraso na animação (0-2s)
+            element.style.transform = `rotate(${Math.random() * 360}deg)`; // Rotação inicial aleatória
+
+            if (type === 'confetti') {
+                element.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)]; // Cor aleatória
+            } else if (type === 'party-item') {
+                const img = document.createElement('img');
+                img.src = partyItems[Math.floor(Math.random() * partyItems.length)]; // Seleciona uma imagem aleatória
+                element.appendChild(img);
+            }
+
+            fallingContainer.appendChild(element);
+
+            // Remover o elemento após a animação para não acumular no DOM
+            element.addEventListener('animationend', () => {
+                element.remove();
+            });
+        }
+
+        // Criar confetes continuamente
+        for (let i = 0; i < numberOfConfetti; i++) {
+            setTimeout(() => createFallingElement('confetti'), i * 15); // Pequeno delay entre cada confete
+        }
+
+        // Criar outros objetos comemorativos continuamente
+        for (let i = 0; i < numberOfPartyItems; i++) {
+            setTimeout(() => createFallingElement('party-item'), i * 80 + 500); // Cria com um delay inicial e entre eles
+        }
+    </script>
+
+    </body>
+</html>
